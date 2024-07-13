@@ -3,10 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"test/mongoconnect"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type friendStruct struct {
@@ -21,12 +20,8 @@ func main() {
 
 }
 func AddUser()  {
-	//? url neveshto
-	var ConnectUrl = options.Client().ApplyURI("mongodb://127.0.0.1:27018")
-
-	// ? COnnect click chido
-	var Client,_ = mongo.Connect(context.TODO(), ConnectUrl)
 	
+	Client := mongoconnect.ConnectDB()
 	// !===========
 	// ? Ar basayat collection  dedow
 	var connection = Client.Database("MasrurDB").Collection("Friends")
@@ -42,11 +37,7 @@ func AddUser()  {
 }
 
 func GetUser()  {
-	//? url neveshto
-	var ConnectUrl = options.Client().ApplyURI("mongodb://127.0.0.1:27018")
-
-	// ? COnnect click chido
-	var Client,_ = mongo.Connect(context.TODO(), ConnectUrl)
+	
 	
 	// !===========
 	// ? Ar basayat collection  dedow
